@@ -57,13 +57,16 @@ const Formulario = () => {
 
     return (
         <form>
+            <ul>
+                {[1,2,3,4,5].map(item =>(
+                    <li key={item}> {item} </li>)
+                )}
+            </ul>
             <input type="text" placeholder="Insira o seu nome" onChange={alteraNome} />
             <input type="number" placeholder="Nota matéria A" max={10} onChange={({target}) => setMateriaA(Number(target.value))} />
             <input type="number" placeholder="Nota matéria B" max={10} onChange={({target}) => setMateriaB(Number(target.value))} />
             <input type="number" placeholder="Nota matéria C" max={10} onChange={({target}) => setMateriaC(Number(target.value))} />
             {renderizaResultado()}
-
-
         </form>
     )
 }
