@@ -6,7 +6,6 @@ import Perfil from "./components/Perfil";
 import ReposList from "./components/ReposList";
 
 function App() {
-  const [formularioVisivel, setFormularioVisivel] = useState(true)
   const [nomeUsuario, setNomeUsuario] = useState('')
 
   return (
