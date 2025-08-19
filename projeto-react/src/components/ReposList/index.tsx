@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+
+import styles from './ReposList.module.css'
+
 type Repositorio = {
     name: string
     language: string
@@ -6,41 +9,53 @@ type Repositorio = {
     id: number
 }
 
-const ReposList = () => {
+type Props = {
+    nomeUsuario: string
+}
+
+const ReposList = ({ nomeUsuario }: Props) => {
     const [repos, setRepos] = useState<Repositorio[]>([])
     const [carregando, setCarregando] = useState(true)
 
+
     useEffect(() => {
-        fetch('https://api.github.com/users/o-matheus/repos')
-        .then(res => res.json())
-        .then(resJson => {
-            setTimeout(() => {
-                setCarregando(false)
-                setRepos(resJson)
-            }, 3000)
-        })
-    }, [])
+        setCarregando(true)
+        fetch(`https://api.github.com/users/${nomeUsuario}/repos`)
+            .then(res => res.json())
+            .then(resJson => {
+                setTimeout(() => {
+                    setCarregando(false)
+                    setRepos(resJson)
+                }, 3000)
+            })
+    }, [nomeUsuario])
 
     return (
-        <>
-        {carregando && (
-            <h1>Carregando...</h1>
-        )}
+        <div className="container">
+            {carregando ? (
+                <h1>Carregando...</h1>
+            ) : (
+                <ul className={styles.list}>
+                    {/* Aqui é possível fazermos a destruturação para não escrever repositório várias vezes no código. */}
 
-        <ul>
-            {/* Aqui é possível fazermos a destruturação para não escrever repositório várias vezes no código. */}
+                    {/* {repos.map(repositorio => ( */}
+                    {repos.map(({ id, name, language, html_url }) => (
+                        <li key={id} className={styles.listItem}>
+                            <div className={styles.itemName}>
+                                <b>Nome:</b> {name} <br />
+                            </div>
 
-            {/* {repos.map(repositorio => ( */}
-            {repos.map(({id, name, language, html_url}) => (
-                <li key={id}>
-                    <b>Nome:</b> {name} <br />
-                    <b>Linguagem:</b> {language} <br />
-                    <a target="_blank" href={html_url}>Visitar no GitHub</a> <br /><br />
-                </li>
-            ))}
-        </ul>
-        
-        </>
+                            <div className={styles.itemLanguage}>
+                                <b>Linguagem:</b> {language} <br />
+                            </div>
+
+                            <a className={styles.itemLink} target="_blank" href={html_url}>Visitar no GitHub</a>
+
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </div>
 
     )
 }

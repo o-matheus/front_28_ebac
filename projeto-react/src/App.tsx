@@ -3,22 +3,22 @@
 import { useState } from "react";
 
 import Perfil from "./components/Perfil";
-import Formulario from "./components/Formulario";
 import ReposList from "./components/ReposList";
 
 function App() {
   const [formularioVisivel, setFormularioVisivel] = useState(true)
+  const [nomeUsuario, setNomeUsuario] = useState('')
 
-  return(
+  return (
     <div>
+      <input type="text" onBlur={({ target }) => setNomeUsuario(target.value)} />
       {/*  Pra chamar o componente é igual ao vueJS, só colocar a tag com um nome de componente customizado. */}
-      <Perfil nome="Matheus Aguiar" endereço="https://github.com/o-matheus.png" />
-      <ReposList />
-      
-      {formularioVisivel && (
-        <Formulario />
+      {nomeUsuario.length > 4 && (
+        <>
+        <Perfil nomeUsuario={nomeUsuario} />
+        <ReposList nomeUsuario={nomeUsuario} />
+        </>
       )}
-      <button onClick={() => setFormularioVisivel(!formularioVisivel)} type="button">toggle form</button>
     </div>
   )
 }

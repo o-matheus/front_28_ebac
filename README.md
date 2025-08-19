@@ -169,11 +169,23 @@ const ReposList = () => {
             <h1>Carregando...</h1>
         )}
 ```
-Aqui é um curto circuito lógico, o elemento só vai ser renderizado enquanto a condição for verdadeira. 
+Aqui é um curto circuito lógico, o elemento só vai ser renderizado enquanto a condição for verdadeira.
+
 ## Aula 6 - Explore o CSS Modules
+
 ### Objetivos
+* Melhorar o código que construímos 
+* Utilizar CSS Module
 
 ### Pontos Importantes
+O ponto de usar o CSS module é que com ele as variáveis que criamos no css são aplicadas de forma local ao componente especifico que criamos, evitando o risco de dar um choque entre estilização de classes que possuem o mesmo nome em componentes diferentes.
+O que o `CSS module` faz é na hora de converter o jsx para html adiciona uma hash, para que não fique com nomes iguais as classes do css.
+Bem interessante dessa aula foi a utilização do operador ternário para fazer uma renderização condicional de elementos e uma outro exemplo de construção do curto circuito lógico para renderização de elementos.
+
+`NomeComponente.module.css` -> Padrão da nomeclatura do arquivo.
+`import styles from './Perfil.module.css';` -> Importação no início do TSX/JSX
+`<header className={styles.header}>` -> Forma como vamos chamar a classe nesse modulo.
+
 
 ## Tarefa
 ### Objetivos
