@@ -1,0 +1,57 @@
+:root {
+    /*Cor de fundo*/
+    --cor-fundo: #1a1a2e;
+    --bg-color-thead: #fafafb;
+    --bg-color-tbody: #fff;
+    
+    
+    /*Cor do texto*/
+    --cor-titulo: #fff;
+    --cor-texto: #c0c0c0;
+    --color-thead: #585f6f;
+    --color-tbody: #000
+}
+
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--cor-fundo);
+}
+
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formFaq {
+    margin: 72px 100px 32px 0px;
+    height: 610px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+@media (max-width: 768px) {
+    .container {
+        display: block;
+    }
+
+    .formFaq {
+        display: block;
+        max-width: 90%;
+        margin: 0 auto;
+        max-height: fit-content;
+    }
+
+}

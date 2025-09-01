@@ -1,0 +1,25 @@
+.faq {
+    max-width: 350px;
+}
+
+.faqTitle {
+    font-size: 1.2em;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--cor-titulo);
+    margin-bottom: 8px;
+}
+
+.faqDescription {
+    font-size: 1rem;
+    color: var(--cor-texto);
+    margin-bottom: 8px;
+}
+
+@media (max-width: 768px) {
+    .faq {
+        text-align: start;
+        margin: 0 auto;
+        margin-bottom: 16px;
+    }
+}

@@ -1,0 +1,36 @@
+.form {
+    max-width: 350px;
+}
+
+.formTitulo {
+    color: var(--cor-titulo);
+}
+
+.formText,
+.inputLabel,
+.formResult,
+.formMessage {
+    color: var(--cor-texto);
+}
+
+.formText,
+.altura {
+    margin-bottom: 16px;
+}
+
+.peso .inputLabel {
+    margin-right: 16px;
+}
+
+.altura .inputLabel {
+    margin-right: 10.5px;
+    
+}
+
+@media (max-width: 768px) {
+    .form {
+        margin: 0 auto;
+        text-align: center;
+        margin-bottom: 16px;
+    }
+}

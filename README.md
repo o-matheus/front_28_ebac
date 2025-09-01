@@ -189,3 +189,13 @@ Bem interessante dessa aula foi a utilização do operador ternário para fazer 
 
 ## Tarefa
 ### Objetivos
+1º -> Criar o projeto em React
+    1.1º -> O projeto vai ser uma calculadora de IMC, onde vai possuir os campos de altura e peso, para que a pessoa digite.
+    1.2º -> Depois de preencher esses valores o IMC vai ser calculado e vai retornar a classificação de acordo com a tabela.
+2º Criar um novo repositório, vou só criar uma nova pasta aqui nesse que to fazendo e colocar o link direto na plataforma.
+
+Container inputs - peso e altura, botão pra calcular o IMC
+Container tabela - Categoria do IMC - valor tal - isso 
+Container FAQ - Com perguntas frequentes sobre nutrição e como se cuidar (gerar IA)
+
+Para fazer o FAQ existem algumas formas, as que eu pesquisei são usando o `details` e o `summary` ou fazendo uma renderização condicional de componentes com o `useState`
