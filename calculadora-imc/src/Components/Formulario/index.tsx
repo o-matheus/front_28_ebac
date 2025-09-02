@@ -1,75 +1,79 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 import './formulario.css';
 
+
+
 const Formulario = () => {
+    const [peso, setPeso] = useState('');
+    const [altura, setAltura] = useState('');
+    const [mensagem, setMensagem] = useState('');
 
+    const handleAlturaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const valor = e.target.value.replace(/\D/g, '');
+        setAltura(valor);
+    };
 
-    const [peso, setPeso] = useState(0)
-    const [altura, setAltura] = useState(0)
+    const handlePesoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const valor = e.target.value.replace(/\D/g, '');
+        setPeso(valor);
+    };
 
-    const imc = (peso: number, altura: number) => {
-        let mensagem = '';
-        const resultado = (peso / (altura ** 2))
-        const resultadoFormatado = resultado.toFixed(1)
-        if (resultado >= 40) {
-            return mensagem = `O seu imc foi de ${resultadoFormatado}, você está com obesidade grau III .`
-        }
-
-        else if (resultado > 0 && resultado < 18.5) {
-            return mensagem = `O seu imc foi de ${resultadoFormatado}, você está abaixo do peso.`
-        }
-
-        else if (resultado >= 18.5 && resultado < 25) {
-            return mensagem = `O seu imc foi de ${resultadoFormatado}, você está com o peso normal.`
-        }
-
-        else if (resultado >= 25 && resultado < 30) {
-            return mensagem = `O seu imc foi de ${resultadoFormatado}, você está com sobrepeso.`
-        }
-
-        else if (resultado >= 30 && resultado < 35) {
-            return mensagem = `O seu imc foi de ${resultadoFormatado}, você está com obesidade grau I .`
-        }
-
-        else if (resultado >= 30 && resultado < 35) {
-            return mensagem = `O seu imc foi de ${resultadoFormatado}, você está com obesidade grau I .`
-        }
-
-        else if (resultado >= 35 && resultado < 40) {
-            return mensagem = `O seu imc foi de ${resultadoFormatado}, você está com obesidade grau II .`
-        }
-
-        else {
-            return mensagem = 'Digite seu peso e altura.'
-        }
+    const formatarCampo = (valor: string) => {
+        if (!valor) return '';
+        return `${valor.slice(0, valor.length - 2)},${valor.slice(-2)}`
     }
+
+    useEffect(() => {
+        const pesoNumero = Number(peso.replace(/\D/g, '')) / 100;
+        const alturaNumero = Number(altura.replace(/\D/g, '')) / 100;
+
+        if (!pesoNumero || !alturaNumero) {
+            setMensagem('Digite seu peso e altura');
+            return
+        }
+
+        const resultado = (pesoNumero / (alturaNumero ** 2))
+        const resultadoFormatado = resultado.toFixed(1)
+
+
+        if (resultado >= 40) {
+            setMensagem(`O seu imc foi de ${resultadoFormatado}, você está com obesidade grau III.`);
+        } else if (resultado > 0 && resultado < 18.5) {
+            setMensagem(`O seu imc foi de ${resultadoFormatado}, você está abaixo do peso.`);
+        } else if (resultado >= 18.5 && resultado < 25) {
+            setMensagem(`O seu imc foi de ${resultadoFormatado}, você está com o peso normal.`);
+        } else if (resultado >= 25 && resultado < 30) {
+            setMensagem(`O seu imc foi de ${resultadoFormatado}, você está com sobrepeso.`);
+        } else if (resultado >= 30 && resultado < 35) {
+            setMensagem(`O seu imc foi de ${resultadoFormatado}, você está com obesidade grau I.`);
+        } else if (resultado >= 35 && resultado < 40) {
+            setMensagem(`O seu imc foi de ${resultadoFormatado}, você está com obesidade grau II.`);
+        }
+
+    }, [peso, altura])
+
+
+
 
 
     return (
 
 
-        <form className="form" action="">
+        <form className="form">
             <div className="formText">
                 <h1 className="formTitulo">Calculadora de IMC</h1>
             </div>
             <div className="peso">
                 <label className="inputLabel" htmlFor="pesoInput">Peso: </label>
-                <input id="pesoInput" type="number" placeholder="kg" onChange={({ target }) => setPeso(Number(target.value))} />
+                <input value={formatarCampo(peso)} id="pesoInput" type="string" placeholder="kg" onChange={handlePesoChange} />
             </div>
             <div className="altura">
                 <label className="inputLabel" htmlFor="alturaInput">Altura: </label>
-                <input id="alturaInput"  placeholder="m" onChange={({ target }) => setAltura(Number(target.value) / 100)} />
+                <input value={formatarCampo(altura)} id="alturaInput" type="string" placeholder="m" onChange={handleAlturaChange} />
             </div>
-            {peso > 0 && altura > 0 ? (
-                <span className="formResult">{imc(peso, altura)}</span>
-            ) : (
-                <span className="formMessage">Digite seu peso e altura.</span>
-            )}
-
-
-
+            <span className="formMessage">{mensagem}</span>
         </form>
 
     )

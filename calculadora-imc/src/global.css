@@ -3,8 +3,8 @@
     --cor-fundo: #1a1a2e;
     --bg-color-thead: #fafafb;
     --bg-color-tbody: #fff;
-    
-    
+
+
     /*Cor do texto*/
     --cor-titulo: #fff;
     --cor-texto: #c0c0c0;
@@ -42,16 +42,34 @@ body {
     justify-content: space-around;
 }
 
+.menuMobile {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    padding: 12px 0;
+}
+
+.menuMobile button {
+    width: 100%;
+    font-size: 20px;
+}
+
 @media (max-width: 768px) {
     .container {
         display: block;
     }
 
     .formFaq {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         max-width: 90%;
         margin: 0 auto;
-        max-height: fit-content;
+        height: 100vh;
     }
 
 }

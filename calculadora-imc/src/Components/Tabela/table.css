@@ -33,10 +33,13 @@ tr .textoResutlado {
     color: var(--color-tbody);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .tableIMC {
         display: block;
         margin: 0 auto;
         max-width: 90%;
+        font-size: 13px;
+        height: 96%;
+        
     }
 }
